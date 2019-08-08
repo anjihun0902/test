@@ -1,0 +1,1 @@
+{"version":3,"sources":["base/footer.scss"],"names":[],"mappings":"AAAA,QACC,iBAAkB","file":"footer.css","sourcesContent":["#footer{\r\n\tposition: relative;\r\n}"]}
