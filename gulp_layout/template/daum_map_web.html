@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>WEB DAUM 주소찾기</title>
+</head>
+
+<body>
+   <!-- 웹 -->
+   <div class="pop-area">
+      <div class="f_addr">
+         <label for="f_addr1" class="label-name">주소</label>
+         <input type="text" id="f_addr1" name="form_addr" class="addr_first" placeholder="주소를 입력해 주세요" readonly>
+         <a href="#none" class="addr_search" onclick="execDaumPostcode();">주소찾기</a>
+         <input type="text" id="f_addr2" name="form_addr" class="addr_middle">
+      </div>
+   </div>
+
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+   <script>
+      // 주소 검색(W)
+      function execDaumPostcode() {
+         new daum.Postcode({
+            oncomplete: function (data) {
+               var fullAddr = '';
+               var extraAddr = '';
+
+               if (data.userSelectedType === 'R') {
+                  fullAddr = data.roadAddress;
+               } else {
+                  fullAddr = data.jibunAddress;
+               }
+
+               if (data.userSelectedType === 'R') {
+                  if (data.bname !== '') {
+                     extraAddr += data.bname;
+                  }
+
+                  if (data.buildingName !== '') {
+                     extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                  }
+
+                  fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '');
+               }
+               fullAddr = "(" + data.zonecode + ") " + fullAddr;
+
+               document.getElementById('f_addr1').value = fullAddr;
+               document.getElementById('f_addr2').focus();
+
+            }
+         }).open();
+      }
+   </script>
+
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>WEB header</title>
+   <style type="text/css">
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         line-height: 1;
+         list-style: none;
+         text-decoration: none;
+      }
+
+      body {
+         background: rgba(0, 0, 0, 0.2)
+      }
+
+      .header {
+         width: 100%;
+         height: 88px;
+         position: relative;
+         top: 0;
+         left: 0;
+         color: #fff;
+         background: rgba(0, 0, 0, .2);
+         z-index: 1000;
+         -webkit-transition: all .3s;
+         transition: all .3s;
+      }
+
+      .header::after {
+         content: '';
+         width: 100%;
+         height: 1px;
+         background: rgba(255, 255, 255, .3);
+         position: absolute;
+         bottom: 0;
+         left: 0;
+      }
+
+      .header a {
+         display: block;
+         width: 100%;
+         height: 100%;
+      }
+
+      .header.on {
+         background: #fff;
+         color: #333;
+         -webkit-transition: all .3s;
+         transition: all .3s;
+      }
+
+      .header.on::after {
+         background: #e5e5e5;
+      }
+
+      .header.on .nav-area {
+         background: #fff;
+      }
+
+      .header.on .nav-area .nav-area {
+         background: #fff
+      }
+
+      .header.on .nav-area .sub-nav {
+         display: block;
+      }
+
+      .header .nav-area {
+         position: relative;
+         width: 100%;
+         height: 88px;
+         margin: 0 auto;
+      }
+
+      .header .nav-area h1 {
+         position: absolute;
+         top: 25px;
+         left: 100px;
+      }
+
+      .header .nav-area .nav {
+         width: 550px;
+         height: 88px;
+         font-size: 20px;
+         margin: 0 auto;
+      }
+
+      .header .nav-area .nav>ul {
+         width: 550px;
+         height: 100%;
+         margin: 0 auto
+      }
+
+      .header .nav-area .nav>ul>li {
+         float: left;
+         height: 100%;
+         padding-top: 36px;
+      }
+
+      .header .nav-area .nav>ul>li+li {
+         margin-left: 105px
+      }
+
+      .header .nav-area .nav>ul>li>a {
+         position: relative
+      }
+
+      .header .nav-area .nav>ul>li>a::before {
+         content: '';
+         position: absolute;
+         left: 50%;
+         bottom: 0;
+         width: 0;
+         height: 4px;
+         background: #0089bd;
+         -webkit-transition: all .5s cubic-bezier(0.7, 0, 0.1, 1);
+         transition: all .5s cubic-bezier(0.7, 0, 0.1, 1);
+      }
+
+      .header .nav-area .nav>ul>li:hover>a::before {
+         left: 0;
+         width: 100%;
+      }
+
+      .header .nav-area .sub-nav {
+         display: none;
+         position: absolute;
+         top: 88px
+      }
+
+      .header .nav-area .sub-nav li a {
+         font-size: 18px;
+         font-weight: 300;
+         padding: 15px 0;
+      }
+
+      .header .nav-ex {
+         position: absolute;
+         top: 43px;
+         right: 60px
+      }
+
+      .header .nav-ex a {
+         display: inline-block;
+         width: auto
+      }
+
+      .header .nav-ex span {
+         font-size: 12px;
+         margin: 0 11px;
+         vertical-align: middle
+      }
+   </style>
+</head>
+
+<body>
+   <header id="header" class="header">
+      <div class="nav-area">
+         <h1><a href="#">로고</a></h1>
+         <nav class="nav">
+            <ul class="clearfix">
+               <li>
+                  <a href="#none">KICA소개</a>
+                  <ul class="sub-nav">
+                     <li><a href="#none">회사개요</a></li>
+                     <li><a href="#none">인사말</a></li>
+                     <li><a href="#none">연혁</a></li>
+                     <li><a href="#none">보도자료</a></li>
+                     <li><a href="#none">오시는 길</a></li>
+                     <li><a href="#none">그룹사</a></li>
+                     <li><a href="#none">문의하기</a></li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="#none">서비스</a>
+                  <ul class="sub-nav">
+                     <li><a href="#none">공인인증</a></li>
+                     <li><a href="#none">클라우드 인증</a></li>
+                     <li><a href="#none">전자계약</a></li>
+                     <li><a href="#none">SSL</a></li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="#none">I R</a>
+                  <ul class="sub-nav">
+                     <li><a href="#none">주주구성</a></li>
+                     <li><a href="#none">재무정보</a></li>
+                     <li><a href="#none">공시자료</a></li>
+                     <li><a href="#none">주가정보</a></li>
+                     <li><a href="#none">공지사항</a></li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="#none">채용</a>
+                  <ul class="sub-nav">
+                     <li><a href="#none">채용안내</a></li>
+                     <li><a href="#none">조직문화</a></li>
+                     <li><a href="#none">직무소개</a></li>
+                     <li><a href="#none">FAQ</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </nav>
+      </div>
+      <div class="nav-ex coHover">
+         <a href="#none">문의사항</a><span>|</span><a href="#none">EN</a>
+      </div>
+   </header>
+
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script type="text/javascript">
+      $(document).ready(function () {
+
+         var navInnerHeight = $('.sub-nav').height() + 100; //네비 펼쳐졌을 때 높이
+         var headerHeight = $('header').height(); // 헤더 높이
+         var animationTime = 400; // 네비 속도
+         // nav open
+         function headerOn() {
+            $(".header").addClass('on');
+            $(".header.on .nav-area").stop().animate({"height": navInnerHeight}, animationTime);
+         }
+         // nav close
+         function headerOff() {
+            $(".header.on .nav-area").stop().animate({"height": headerHeight}, animationTime, function () {
+               $(".header").removeClass("on");
+            });
+         }
+
+         $(".header").each(function(){
+            $(this).on('mouseover', function(){headerOn();});
+            $(this).on('mouseout', function(){headerOff();});
+         });
+         $(".header .nav a").each(function(){
+            $(this).on('focusin', function(){headerOn();});
+            $(this).on('focusout', function(){headerOff();});
+         });
+      });
+   </script>
+</body>
+
+</html>

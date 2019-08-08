@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>mobile header</title>
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         list-style-type: none;
+         text-decoration: none;
+      }
+
+      html,
+      body {
+         width: 100%;
+         height: 100%;
+      }
+
+      body {
+         background: #4373bc;
+      }
+      .clearfix::after{
+         content: '';
+         display: block;
+         clear: both;
+      }
+      .blackBg {
+         display: none;
+         position: fixed;
+         width: 100%;
+         height: 100%;
+         background: rgba(0,0,0,0.3);
+         z-index: 10;
+      }
+
+      .header {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 60px;
+         z-index: 100
+      }
+
+      .header::after {
+         content: '';
+         width: 100%;
+         height: 1px;
+         background: #fff;
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         opacity: .3
+      }
+
+      .header a {
+         display: block;
+         width: 100%;
+         height: 100%
+      }
+
+      .header .logo {
+         background: url(http://tracking.stickint.com/2019kica/m/resources/img/common/logo.png)0 50% no-repeat;
+         background-size: contain;
+         width: 135px;
+         height: 100%;
+         margin-left: 25px
+      }
+
+      .header .menu {
+         position: absolute;
+         top: 20px;
+         right: 25px;
+         z-index: 101;
+      }
+
+      .header .menu span {
+         display: block;
+         background: #fff;
+         width: 25px;
+         height: 2px;
+         transition: margin .25s 0.25s, transform .25s;
+      }
+
+      .header .menu span+span {
+         margin-top: 5px;
+      }
+
+      .header .menu.on span {
+         transition: margin 0.25s, transform .25s .25s;
+         background: #333;
+      }
+
+      .header .menu.on .bar1 {
+         margin-top: 8px;
+         margin-bottom: -7px;
+         transform: rotate(45deg);
+      }
+
+      .header .menu.on .bar2 {
+         transform: rotate(45deg);
+         background: transparent;
+      }
+
+      .header .menu.on .bar3 {
+         margin-top: -2px;
+         transform: rotate(135deg);
+      }
+
+      .header .nav-area {
+         display: none;
+         position: absolute;
+         top: 0;
+         right: -100%;
+         width: 88%;
+         min-width: 300px;
+         max-width: 600px;
+         height: 100vh;
+         background: #fff;
+         z-index: 100;
+      }
+
+      .header .nav-area .nav-ex {
+         height: 80px;
+         border-bottom: 1px solid #a9a9a9;
+         padding: 25px 0 0 19px
+      }
+
+      .header .nav-area .nav-ex a {
+         display: inline-block;
+         text-align: center;
+         width: 45px;
+         height: 45px;
+         font-size: 14px;
+         line-height: 45px;
+         vertical-align: top;
+         border-radius: 50%;
+         border: 1px solid #838383
+      }
+
+      .header .nav-area .nav-ex a.on {
+         background: #00a4cd;
+         color: #fff;
+         border: none
+      }
+
+      .header .nav-area .nav-ex span {
+         display: inline-block;
+         vertical-align: top;
+         margin: 13px 8px 0;
+         font-size: 13px
+      }
+
+      .header .nav-area .nav>ul>li {
+         font-size: 21px;
+         border-bottom: 1px solid #f3f3f3;
+         background: #fff
+      }
+
+      .header .nav-area .nav>ul>li>a {
+         padding: 23px 26px 23px 50px;
+         line-height: 1;
+         vertical-align: bottom;
+         display: inline-block;
+         position: relative
+      }
+
+      .header .nav-area .nav>ul>li>a::before {
+         content: '';
+         width: 18px;
+         height: 19px;
+         position: absolute;
+         top: 25px;
+         left: 18px;
+      }
+
+      .header .nav-area .nav>ul>li:nth-child(1)>a::before {
+         background: url(http://tracking.stickint.com/2019kica/m/resources/img/common/ico_nav1.png)0 0 no-repeat;
+         background-size: cover
+      }
+
+      .header .nav-area .nav>ul>li:nth-child(2)>a::before {
+         background: url(http://tracking.stickint.com/2019kica/m/resources/img/common/ico_nav2.png)0 0 no-repeat;
+         background-size: cover
+      }
+
+      .header .nav-area .nav>ul>li:nth-child(3)>a::before {
+         background: url(http://tracking.stickint.com/2019kica/m/resources/img/common/ico_nav3.png)0 0 no-repeat;
+         background-size: cover
+      }
+
+      .header .nav-area .nav>ul>li:nth-child(4)>a::before {
+         background: url(http://tracking.stickint.com/2019kica/m/resources/img/common/ico_nav4.png)0 0 no-repeat;
+         background-size: cover
+      }
+
+      .header .nav-area .nav>ul>li>a.on {
+         color: #00a4cd
+      }
+
+      .header .nav-area .nav>ul>li>a.on::before {
+         background-position: 100% 100%
+      }
+
+      .header .nav-area .nav>ul>li>a::after {
+         content: '+';
+         position: absolute;
+         top: 30%;
+         right: 9%;
+         font-size: 30px
+      }
+
+      .header .nav-area .nav>ul>li>a.on::after {
+         content: '-'
+      }
+
+      .header .nav-area .nav .sub-nav {
+         display: none;
+         background: #ebebeb
+      }
+
+      .header .nav-area .nav .sub-nav>li {
+         float: left;
+         width: 50%;
+         border-bottom: 1px solid #fff
+      }
+
+      .header .nav-area .nav .sub-nav>li.bb0 {
+         border-bottom: 0
+      }
+
+      .header .nav-area .nav .sub-nav li>a {
+         padding: 17px 0 16px 50px;
+         font-size: 18px;
+         font-weight: 300
+      }
+
+      .header .nav-area .nav .sub-gnb>select {
+         width: 50%;
+         height: 50px;
+         line-height: 50px;
+         font-size: 16px;
+         padding-left: 30px;
+         background: url(../img/common/arrow_sgnb.jpg)91% 54% no-repeat;
+         background-size: 12px;
+         border-right: 1px solid #4d4d4d;
+         border-top: 1px solid #333;
+         border-left: 1px solid #333;
+         border-bottom: 1px solid #333
+      }
+
+      .header .nav-area .nav .sub-gnb>select+select {
+         border-left: 0
+      }
+
+      /* 태블릿 */
+      @media screen and (min-width:568px) and (max-width:1023px){ 
+
+       }
+
+   </style>
+</head>
+
+<body>
+   <div class="blackBg"></div>
+   <!-- header -->
+   <header class="header">
+      <h1 class="logo"><a href="#none"></a></h1>
+      <!-- menu -->
+      <div class="menu">
+         <span class="bar1"></span>
+         <span class="bar2"></span>
+         <span class="bar3"></span>
+      </div>
+      <!-- //menu -->
+      <div class="nav-area">
+         <div class="nav-ex">
+            <a href="#none" class="on">KR</a><span>|</span><a href="#none">ENG</a>
+         </div>
+         <nav class="nav">
+            <ul class="clearfix">
+               <li>
+                  <a href="#none">KICA 소개</a>
+                  <ul class="sub-nav clearfix">
+                     <li><a href="#none">회사개요</a></li>
+                     <li><a href="#none">인사말</a></li>
+                     <li><a href="#none">연혁</a></li>
+                     <li><a href="#none">보도자료</a></li>
+                     <li><a href="#none">오시는 길</a></li>
+                     <li><a href="#none">그룹사</a></li>
+                     <li class="bb0"><a href="#none">문의하기</a></li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="#none">서비스</a>
+                  <ul class="sub-nav clearfix">
+                     <li><a href="#none">공인인증</a></li>
+                     <li><a href="#none">클라우드 인증</a></li>
+                     <li class="bb0"><a href="#none">전자계약</a></li>
+                     <li class="bb0"><a href="#none">SSL</a></li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="#none">I R</a>
+                  <ul class="sub-nav clearfix">
+                     <li><a href="#none">주주구성</a></li>
+                     <li><a href="#none">재무정보</a></li>
+                     <li><a href="#none">공시자료</a></li>
+                     <li><a href="#none">주가정보</a></li>
+                     <li class="bb0"><a href="#none">공지사항</a></li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="#none">채용</a>
+                  <ul class="sub-nav clearfix">
+                     <li><a href="#none">채용안내</a></li>
+                     <li><a href="#none">조직문화</a></li>
+                     <li class="bb0"><a href="#none">직무소개</a></li>
+                     <li class="bb0"><a href="#none">FAQ</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </nav>
+      </div>
+   </header><!-- //header -->
+
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <script>
+      $(document).ready(function () {
+
+         //header on off
+         $(".header .menu").on("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(".blackBg").toggle();
+            $(this).toggleClass("on");
+            if ($(this).hasClass("on")) {
+               $(".nav-area").show().animate({"right": "0"}, 500);
+            } else {
+               $(".nav-area").animate({"right": "-100%"}, 500).fadeOut("fast");
+            }
+         });
+
+         //snb on off
+         $(".nav > ul > li > a").on("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).toggleClass("on");
+            $(this).siblings().slideToggle();
+         });
+
+
+      });
+   </script>
+</body>
+
+</html>

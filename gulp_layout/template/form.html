@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>form basic</title>
+</head>
+
+<body>
+   <style type="text/css">
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'dotum', sans-serif;
+      }
+
+      li {
+         list-style: none
+      }
+
+      .hide {
+         display: block;
+         overflow: hidden;
+         position: absolute;
+         left: -9999px;
+         width: 1px;
+         height: 1px;
+         font-size: 0;
+         line-height: 0;
+         text-indent: -9999px
+      }
+
+      .form_wrap {
+         width: 500px;
+         margin: 0 auto;
+      }
+
+      .form_area {
+         font-size: 18px;
+         color: #432c10;
+         margin: 5% 0;
+      }
+
+      .form_area>div {
+         padding-top: 19px;
+      }
+
+      .form_area .f_choice li {
+         position: relative;
+         display: inline-block;
+         width: 49%;
+      }
+
+      .form_area .f_choice input {
+         display: none
+      }
+
+      .form_area .f_choice label {
+         display: table-cell;
+         font-weight: 700;
+         padding-left: 7px;
+         vertical-align: middle;
+         padding-bottom: 0
+      }
+
+      .form_area .f_choice label:hover:before {
+         border-color: #000000
+      }
+
+      .form_area .f_choice label:before {
+         width: 20px;
+         height: 20px;
+         margin-top: -12px;
+         margin-right: 10px;
+         border-radius: 50%
+      }
+
+      .form_area .f_choice label:before {
+         content: "";
+         display: block;
+         position: absolute;
+         top: 33%;
+         left: -20px;
+         margin-top: -8px;
+         background-color: #fff;
+         border: 1px #BFBFBF solid
+      }
+
+      .form_area .f_choice input:checked+label:before {
+         content: "∨";
+         font-size: 15px;
+         line-height: 20px;
+         text-align: center;
+         background-color: #FFBA00;
+         color: #fff
+      }
+
+      .form_area input[type="text"],
+      .form_area input[type="tel"] {
+         width: 100%;
+         height: 42px;
+         background: #fff;
+         border: 1px solid #e0e0e0;
+         padding-left: 2%;
+         font-size: 18px;
+      }
+
+      .form_area textarea {
+         width: 100%;
+         padding: 2%;
+         background: #fff;
+         border: 1px solid #e0e0e0;
+         resize: none;
+         height: 100px;
+         vertical-align: middle;
+         font-size: 18px;
+      }
+
+      .form_area input::-webkit-input-placeholder {
+         color: #9d9d9d
+      }
+
+      .form_area input:-moz-placeholder {
+         color: #9d9d9d
+      }
+
+      .form_area textarea::-webkit-input-placeholder {
+         color: #9d9d9d
+      }
+
+      .form_area textarea:-moz-placeholder {
+         color: #9d9d9d
+      }
+
+      .form_area .f_priv {
+         padding-top: 10px
+      }
+
+      .form_area .f_priv label {
+         width: 100%;
+         font-size: 18px;
+         padding: 6px 0 0 45px;
+         color: #797979;
+         position: relative;
+      }
+
+      .form_area .f_priv input {
+         display: none
+      }
+
+      .form_area .f_priv label:before {
+         content: "";
+         display: block;
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 28px;
+         height: 28px;
+         border: 1px solid #dfdfdf;
+         color: #348a55
+      }
+
+      .form_area .f_priv input:checked+label:before {
+         content: "∨";
+         font-size: 28px;
+         text-align: center;
+         line-height: 1;
+      }
+
+      .form_area .privacy_txt p {
+         color: #000;
+         font-weight: 700;
+         padding-bottom: 10px
+      }
+
+      .form_area .privacy_txt {
+         color: #9d9d9d;
+         background: #fafafa;
+         border: 1px solid #e0e0e0;
+         margin: 10px 0;
+         padding: 20px 30px;
+         line-height: 1.3
+      }
+
+      button {
+         padding: 5px 20px;
+      }
+   </style>
+
+
+   <div class="form_wrap">
+
+      <!-- [D] FORM -->
+      <form id="frm" name="frm" method="post" enctype="multipart/form-data" onsubmit="return false">
+         <div class="form_area">
+            <!-- radio -->
+            <ul class="f_choice">
+               <li>
+                  <input type="radio" name="sex" id="male" value="10">
+                  <label for="male">남자</label>
+               </li>
+               <li>
+                  <input type="radio" name="sex" id="female" value="20">
+                  <label for="female">여자</label>
+               </li>
+            </ul>
+            <!-- name -->
+            <div class="f_name fl-l w50p">
+               <label for="f_name" class="hide">이름</label>
+               <input type="text" id="f_name" name="f_name" placeholder="이름">
+            </div>
+            <!-- tel -->
+            <div class="f_num fl-r w50p">
+               <label for="f_num" class="hide">연락처</label>
+               <input type="tel" id="f_num" name="f_num" maxlength="11" placeholder="연락처">
+            </div>
+            <!-- email -->
+            <div class="f_email">
+               <label for="f_email" class="hide">이메일</label>
+               <input type="text" id="f_email" name="f_email" placeholder="이메일">
+            </div>
+            <!-- address-->
+            <div class="f_addr">
+               <label for="f_addr1" class="label-name">주소</label>
+               <input type="text" id="f_addr1" name="form_addr" class="addr_first" placeholder="주소를 입력해 주세요" readonly>
+               <a href="#none" class="addr_search">주소찾기</a>
+               <input type="text" id="f_addr2" name="form_addr" class="addr_middle">
+            </div>
+            <!-- textarea -->
+            <div class="f_textarea">
+               <label for="f_textarea" class="hide">내용</label>
+               <textarea id="f_textarea" name="f_textarea" placeholder="내용"></textarea>
+            </div>
+            <!-- checkbox -->
+            <div class="privacy_area">
+               <div class="privacy_txt">
+                  <p>개인정보 수집 및 이용에 대한 안내</p>
+                  내용 내용
+               </div>
+               <div class="f_priv">
+                  <input type="checkbox" id="f_priv1" name="f_priv1" value="Y">
+                  <label for="f_priv1">개인정보보호정책에 동의합니다.</label>
+               </div>
+            </div>
+         </div>
+
+         <!-- btn::문의하기 -->
+         <button>상담신청하기</button>
+      </form><!-- [D] FORM -->
+   </div>
+
+
+</body>
+
+</html>

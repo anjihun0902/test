@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <title>스크롤다운</title>
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box
+      }
+
+      section {
+         width: 100%;
+         height: 100vh;
+         background-color: #ddd
+      }
+
+      section:nth-child(2) {
+         background-color: rgb(24, 202, 119)
+      }
+
+      .scr_down {
+         position: absolute;
+         bottom: 5%;
+         left: 50%;
+         transform: translateX(-50%);
+      }
+
+      .scr_down i {
+         font-size:50px
+      }
+
+   </style>
+</head>
+
+<body>
+   <section>
+      <div class="scr_down">
+         <i class="material-icons">mouse</i>
+      </div>
+   </section>
+   <section></section>
+   
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script>
+      $(window).on('scroll', function () {
+         var positionTop = 0;
+         var cur_pos = $(this).scrollTop();
+         if (cur_pos == positionTop) {
+            $('.scr_down').fadeIn();
+         } else if (cur_pos >= positionTop) {
+            $('.scr_down').fadeOut();
+         }
+      });
+   </script>
+</body>
+
+</html>

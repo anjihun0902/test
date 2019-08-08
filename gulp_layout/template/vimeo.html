@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>SAMSUNG qr1</title>
+<style type="text/css">
+*{margin:0;padding:0}
+/* 
+	모바일 전체 화면 시
+
+	html,body{width:100%;height:100%;background:#000}
+	#myVideo , #myVideo iframe{width:100%;height:99%;background:#000} 
+*/
+</style>
+</head>
+<body>
+
+<!-- vimeo -->
+<div id="myVideo"></div>
+
+<!--
+   https://developer.vimeo.com/player/sdk/basics
+   더 다양한 예제는 위 사이트 참고
+-->
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script type="text/javascript"> 
+	var options = {
+		url: "https://vimeo.com/352394690/cc44a10631",
+		autoplay: true,
+		muted: false, // 모바일 기기에서 자동실행, soundOn 시 false로 변경
+		playsinline: false //전체 화면 모드에서 기기가 강제로 동영상을 재생하도록하려면 false 값으로 설정
+	};
+	var videoPlayer = new Vimeo.Player('myVideo', options);
+</script>
+</body>
+</html>

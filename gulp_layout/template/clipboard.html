@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>clipboard</title>
+</head>
+
+<body>
+
+   <div>
+      <span class="copy">#해시태그 #해시태그복사 #복사</span>
+      <a href="#none" class="hashtag_copy" data-clipboard-action="copy" data-clipboard-target="span.copy">복사하기</a>
+   </div>
+
+   <script src="./lib/clipboard.min.js"></script>
+   <script type="text/javascript">
+      //ClipboardJS - 인스타그램 해시태그복사
+      var clipboard = new ClipboardJS('.hashtag_copy');
+      clipboard.on('success', function () {
+         alert("해시태그가 복사되었습니다.");
+      });
+   </script>
+</body>
+
+</html>

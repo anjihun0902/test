@@ -1,0 +1,28 @@
+// clearfix
+@mixin clearfix {
+   content: '';
+   display: block;
+   clear: both;
+}
+
+// 컨텐츠 중앙 정렬(!aos사용시 걷어내기)
+@mixin box-center($minWidth) {
+   position: absolute;
+   bottom: 50%;
+   right: 50%;
+   -webkit-transform: translate(50%, 50%);
+   -moz-transform: translate(50%, 50%);
+   -ms-transform: translate(50%, 50%);
+   transform: translate(50%, 50%);
+   width: 100%;
+   min-width: $minWidth;
+   z-index: 10;
+}
+
+// border-radius
+@mixin border-radius($radius){
+   -webkit-border-radius: $radius;
+   -moz-border-radius: $radius;
+   -ms-border-radius: $radius;
+   border-radius: $radius;
+}

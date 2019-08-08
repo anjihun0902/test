@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <title>accordian</title>
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         list-style: none;
+         text-decoration: none;
+         color: #444;
+      }
+
+      .faq_list {
+         width: 700px;
+         margin: 5% auto;
+         border: 1px solid #4d4d4d;
+      }
+
+      .faq_list li {
+         font-weight: 300;
+         color: #4d4d4d;
+         border-bottom: 1px solid #d3d3d3;
+      }
+
+      .faq_list a {
+         display: block;
+         padding: 1.5%;
+         position: relative
+      }
+
+      .faq_list a:after {
+         content: "\e5c5";
+         font-family: "Material Icons"; 
+         position: absolute;
+         top: 50%;
+         right: 20px;
+         transform: translateY(-50%);
+         font-size: 25px;
+      }
+
+      .faq_list a.on:after {
+         content: "\e5c7";
+         font-family: "Material Icons"; 
+      }
+
+      .faq_list .faq_subject {
+         display: inline-block;
+         width: 15%;
+         color: #333;
+         padding-left: 5%;
+      }
+
+      .faq_list .faq_tit {
+         display: inline-block;
+         width: 90%
+      }
+
+      .faq_list .faq_txt {
+         display: inline-block;
+         width: 95%;
+         padding-left: 5px;
+         text-align: justify
+      }
+
+      .faq_tit .faq_txt:hover {
+         text-decoration: underline
+      }
+
+      .faq_list .faq_cont {
+         display: none;
+         background: #f3f3f3;
+         padding: 2.5% 6.3%;
+         border-top: 1px solid #d3d3d3;
+         text-align: justify;
+         line-height: 1.3
+      }
+   </style>
+
+</head>
+
+<body>
+
+   <ul class="faq_list">
+      <li>
+         <a href="#none">
+            <div class="faq_tit">제목</div>
+         </a>
+         <div class="faq_cont" style="display:none">
+            <span class="faq_txt">내용입니다.</span>
+         </div>
+      </li>
+      <li>
+         <a href="#none">
+            <div class="faq_tit">제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 제목 </div>
+         </a>
+         <div class="faq_cont" style="display:none">
+            <span class="faq_txt">내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. 내용입니다. </span>
+         </div>
+      </li>
+      <li>
+         <a href="#none">
+            <div class="faq_tit">제목</div>
+         </a>
+         <div class="faq_cont" style="display:none">
+            <span class="faq_txt">내용입니다.</span>
+         </div>
+      </li>
+   </ul>
+
+
+
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script>
+      $(".faq_list .faq_cont").hide();
+      $(".faq_list li a").click(function () {
+         if ($(this).hasClass("on")) {
+            $(this).removeClass("on").siblings(".faq_cont").slideUp(300);
+         } else {
+            $(this).addClass("on").siblings(".faq_cont").slideDown(300);
+         }
+      });
+   </script>
+</body>
+
+</html>

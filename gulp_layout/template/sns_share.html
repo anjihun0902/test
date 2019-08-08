@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>SNS share</title>
+   <meta name="keywords" content="공유하기">
+   <meta name="description" content="공유하기">
+   <meta property="og:type" content="website">
+   <meta property="og:title" content="공유하기">
+   <meta property="og:site_name" content="공유하기">
+   <meta property="og:description" content="공유하기">
+   <meta property="og:url" content="">
+   <meta property="og:image" content="">
+   <meta property="og:image:width" content="1200">
+   <meta property="og:image:height" content="627">
+   <meta property="fb:app_id" content=""><!-- facebook app key -->
+</head>
+
+<body>
+
+   <ul class="ev-sns-area">
+      <li class="ev-btn-fb"><a href="javascript:shareFaceBook();">페이스북 공유</a></li>
+      <li class="ev-btn-kt"><a href="javascript:shareKakaoTalk();">카카오톡 공유</a></li>
+      <li class="ev-btn-insta"><a href="#none">인스타그램 공유</a></li>
+      <li class="ev-btn-ks"><a href="javascript:shareStory();">카카오스토리 공유</a></li>
+      <li class="ev-btn-nb"><a href="javascript:naverBlog();">네이버블로그 공유</a></li>
+   </ul>
+
+
+
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script type="text/javascript">
+      var facebookAppId = ""; //페이스북 공유 앱키
+      var kakaoAppid = ""; //카카오 공유 앱키
+      var share_title_description = ""; //공유타이틀
+      var kakao_title = ""; //카카오타이틀
+      var kakao_button_title = ""; //카카오 공유 버튼 타이틀
+      var share_popup_timer = 1000; //공유 뜨는 시간
+
+
+      // 공유 완료후 callFunction
+      function completeSNS() {
+         
+      }
+
+      // 네이버블로그
+      function naverBlog() {
+
+         //팝업
+         setTimeout(function () {
+            $('#share_which').val("NB"); // 공유 sns 구분
+            completeSNS();
+         }, share_popup_timer);
+
+         /* 네이버 공유 */
+         var strURL = ""; //공유 url
+         var strTitle = share_title_description;
+         var blog_url = "http://blog.naver.com/openapi/share?url=" + encodeURIComponent(strURL) + "&title=" +
+            encodeURIComponent(strTitle);
+         var winWidth = 520;
+         var winHeight = 800;
+         var winTop = (screen.height / 2) - (winHeight / 2);
+         var winLeft = (screen.width / 2) - (winWidth / 2);
+         var a = window.open(blog_url, 'fn_naver_shareWindow', 'top=' + winTop + ',left=' + winLeft +
+            ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+
+      }
+
+      // 페이스북 공유
+      function shareFaceBook() {
+
+         var obj = {
+            method: 'feed',
+            link: '' //공유 url
+         };
+         FB.ui(obj,
+            // callback
+            function (response) {
+               if (response && !response.error_message) {
+                  // 팝업
+                  $('#share_which').val("FB"); // 공유 sns 구분
+                  completeSNS();
+
+               } else {
+                  alert("공유 후 응모가 가능합니다.");
+               }
+            });
+      }
+
+
+
+      // 카카오스토리 공유
+      function shareStory() {
+
+         Kakao.Story.share({
+            url: '', //공유 url
+            text: share_title_description,
+         });
+
+         // 팝업
+         setTimeout(function () {
+            $('#share_which').val("KS"); // 공유 sns 구분
+            completeSNS();
+         }, share_popup_timer);
+
+      }
+
+      // 카카오톡 공유
+      function shareKakaoTalk() {
+
+         Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+               title: kakao_title,
+               description: share_title_description,
+               imageUrl: image_url,
+               imageWidth: 800,
+               imageHeight: 627,
+               link: {
+                  mobileWebUrl: '', //공유 url
+                  webUrl: '' //공유 url
+               }
+            },
+            buttons: [{
+               title: kakao_button_title,
+               link: {
+                  mobileWebUrl: '', //공유 url
+                  webUrl: '' //공유 url
+               }
+            }],
+
+            // 팝업
+            success: function () {
+               setTimeout(function () {
+                  $('#share_which').val("KT"); // 공유 sns 구분
+                  completeSNS();
+               }, share_popup_timer);
+            }
+
+         });
+      }
+
+
+      //페이스북 API
+      window.fbAsyncInit = function () {
+         FB.init({
+            appId: facebookAppId,
+            xfbml: true,
+            version: 'v2.12'
+         });
+         FB.AppEvents.logPageView();
+      };
+
+      (function (d, s, id) {
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {
+            return;
+         }
+         js = d.createElement(s);
+         js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+   </script>
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>tab</title>
+</head>
+
+<body>
+   <!--
+      tabs, tab_content에 숫자를 추가
+      공통 css => tabs_li, tab_cont
+   -->
+   <div class="tabarea">
+      <ul class="tabs_li tabs">
+         <li class="tab1">
+            <a href="tab_cont1" class="on" title="">1</a>
+         </li>
+         <li class="tab2">
+            <a href="tab_cont2" title="">2</a>
+         </li>
+      </ul>
+   </div>
+   <section id="tab_cont1" class="tab_cont tab_content">11</section>
+   <section id="tab_cont2" class="tab_cont tab_content">22</section>
+
+   
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script>
+      function tabChange(i) {
+         $(".tab_content" + i).hide();
+         $(".tab_content" + i + ":first").show();
+         $("ul.tabs" + i + " li a").click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $("ul.tabs" + i + " li a").removeClass("on");
+            $(this).addClass("on");
+            $(".tab_content" + i).hide();
+            var activeTab = $(this).attr("href");
+            $("#" + activeTab).show();
+         });
+      }
+      tabChange("");
+   </script>
+</body>
+
+</html>
